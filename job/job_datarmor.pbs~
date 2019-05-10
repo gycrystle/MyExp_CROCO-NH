@@ -1,0 +1,38 @@
+#!/bin/csh
+#PBS -N Caldeira
+#PBS -q mpi_1
+#PBS -l mpiprocs=4
+#PBS -l walltime=00:30:00
+#PBS -j oe
+
+source /usr/share/Modules/3.2.10/init/csh
+
+module load mpt/2.15
+module load intel-fc-16/16.0.4.258
+module load NETCDF/4.3.3.1-mpt-intel2016
+
+module list
+
+setenv LD_LIBRARY_PATH ${HOME}/Codes/CROCO-NH/NHMG_LIB/lib
+echo "NHMG library is in $LD_LIBRARY_PATH"
+
+set RUNEXP=/home2/datawork/gcrystle/Myexperiment/Caldeira
+set SOURCE=/home2/datahome/gcrystle/Codes/CROCO-NH/Myfirstexp
+
+echo "check 1"
+set NBCORES=`cat $PBS_NODEFILE | wc -l`
+echo "Running with $NBCORES cores" 
+
+echo "check 2"
+
+cd $RUNEXP
+cp $SOURCE/croco .
+
+
+ls -rtl
+date
+echo "check 3"
+
+mpiexec_mpt -np 4 ./croco  croco.in.Caldeira > output.0
+date
+ls -rtl

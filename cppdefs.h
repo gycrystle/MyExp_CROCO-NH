@@ -765,7 +765,7 @@
 #  endif
 # endif
 # define NEW_S_COORD
-# define ANA_GRID
+# undef ANA_GRID
 # define ANA_INITIAL
 # define ANA_SMFLUX
 # define ANA_STFLUX
@@ -780,23 +780,24 @@
 # undef NONLIN_EOS
 # undef SPLIT_EOS
                       /* OBCs algo */
-# define OBC_M2SPECIFIED
+# undef OBC_M2SPECIFIED
 # undef  OBC_M2FLATHER
 # undef  OBC_M2CHARACT
-# undef  OBC_M2ORLANSKI
-# define OBC_M3SPECIFIED
-# undef OBC_M3ORLANSKI
-# define OBC_TSPECIFIED
-# undef OBC_TORLANSKI
+# define  OBC_M2ORLANSKI
+# undef OBC_M3SPECIFIED
+# define OBC_M3ORLANSKI
+# undef OBC_TSPECIFIED
+# define OBC_TORLANSKI
                       /* Sponge */
-# undef SPONGE
+# define SPONGE
                       /* Semi-implicit Vertical Tracer/Mom Advection */
 # define  VADV_ADAPT_IMP
                       /* Vertical Mixing */
 # undef  BODYFORCE
 # undef  BVF_MIXING
-# define LMD_MIXING
+# undef LMD_MIXING
 # undef  GLS_MIXING
+# define GLS_MIX2017
 # ifdef LMD_MIXING
 #  define LMD_SKPP
 #  define LMD_BKPP
@@ -806,14 +807,26 @@
 #  define LMD_NONLOCAL
 # endif
 # ifdef GLS_MIXING
-#  define GLS_KKL
-#  undef  GLS_KOMEGA
+#  undef GLS_KKL
+#  define  GLS_KOMEGA
 #  undef  GLS_KEPSILON
 #  undef  GLS_GEN
 #  undef  KANTHA_CLAYSON
 #  undef  CRAIG_BANNER
-#  undef  CANUTO_A
+#  define  CANUTO_A
 #  undef  ZOS_HSIG
+# endif
+# ifdef GLS_MIX2017
+#  define  GLS_KOMEGA
+#  undef GLS_KEPSILON
+#  undef  GLS_GEN
+#  define CANUTO_A
+#  undef  GibLau_78
+#  undef  MelYam_82
+#  undef  KanCla_94
+#  undef  Luyten_96
+#  undef  CANUTO_B 
+#  undef  Cheng_02
 # endif
 
                       /* Input/Output & Diagnostics */

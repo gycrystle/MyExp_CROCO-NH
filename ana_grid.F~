@@ -121,7 +121,7 @@ C$    integer omp_get_thread_num
                      beta=0.
 # elif defined CALDEIRA
                      depth=1700.
-                     f0=1.0E-4
+                     f0=0.88E-4
                      beta=0.
 # elif defined SHELFRONT
                      depth=1660.
@@ -230,8 +230,8 @@ C$    integer omp_get_thread_num
 # elif defined CALDEIRA
 !                     Length_XI =100.0e+3
 !                     Length_ETA=100.0e+3
-                     Length_XI =10.24e+3
-                     Length_ETA=10.24e+3 !116.064e+3
+                     Length_XI =10.0e+3
+                     Length_ETA=10.0e+3
 !                     Length_XI =2.0e+3
 !                     Length_ETA=2.0e+3
 # elif defined SHELFRONT
